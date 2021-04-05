@@ -1,5 +1,6 @@
 package com.study.mybatisplus;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.study.mybatisplus.entity.User;
@@ -47,7 +48,7 @@ public class MybatisplusApplicationTests {
     }
     /**
      *@Desc:测试乐观锁
-     *@param null
+     *@param
      *@return:
      */
     @Test
@@ -125,6 +126,58 @@ public class MybatisplusApplicationTests {
     public void testDeleteById2(){
         int result = userMapper.deleteById(1379066255045206018L);
         System.out.println(result);
+
+    }
+    /***
+     *@Desc:mp实现复杂查询
+     *@param
+     *@return:void
+     * ge、gt、le、lt、isNull、isNotNull
+     *>=、>、<= 、<
+     * eq、ne
+     *=  <>
+     * between
+     *范围查询
+     * like
+     *迷糊查询
+     * orderBy
+     *排序
+     * last：直接拼接到 sql 的最后
+     *select（）
+     * 查询指定列
+     */
+    @Test
+    public void testSelectQuery(){
+        //创建QueryWrapper对象
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+
+        //通过QueryWrapper对象设置条件
+        //查询大于等于30记录ge(参数1：字段值，参数2：条件）
+        //wrapper.ge("age", 30);
+
+        //eq:=等于查询
+        //wrapper.eq("name", "yyb");
+
+        //ne:<>不等于查询
+        //wrapper.ne("name", "yyb");
+
+        //between:范围查询（年龄在20-30间）val1:开始值
+        //wrapper.between("age",20,30);
+
+        //like：迷糊查询
+        //wrapper.like("name","李");
+
+        //orderBy:排序 orderByDesc:降序
+        //wrapper.orderByDesc("id");
+
+        //last：直接拼接到 sql 的最后
+        //wrapper.last("limit 1");
+
+        //查询指定的列
+        wrapper.select("id","name");
+        List<User> users = userMapper.selectList(wrapper);
+
+        System.out.println(users);
 
     }
 
