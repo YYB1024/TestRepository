@@ -30,8 +30,8 @@ public class MybatisplusApplicationTests {
     @Test
     public void insertUser(){
         User user = new User();
-        user.setName("葵花宝典");
-        user.setAge(10);
+        user.setName("李易峰2");
+        user.setAge(30);
         user.setEmail("libai@qq.com");
         int insert = userMapper.insert(user);
         System.out.println(insert);
