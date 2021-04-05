@@ -30,8 +30,8 @@ public class MybatisplusApplicationTests {
     @Test
     public void insertUser(){
         User user = new User();
-        user.setName("李白3");
-        user.setAge(5);
+        user.setName("葵花宝典");
+        user.setAge(10);
         user.setEmail("libai@qq.com");
         int insert = userMapper.insert(user);
         System.out.println(insert);
@@ -93,6 +93,42 @@ public class MybatisplusApplicationTests {
         System.out.println(page.hasPrevious());//是否有上一页
 
     }
+    /**
+     *@Desc:根据id进行物理删除
+     *@param
+     *@return:void
+     */
+    @Test
+    public void testDeleteById(){
+        int result = userMapper.deleteById(1L);
+        System.out.println(result);
+
+    }
+    /**
+     *@Desc:批量删除
+     *@param
+     *@return:void
+     */
+    @Test
+    public void testDeleteByIds(){
+        int result = userMapper.deleteBatchIds(Arrays.asList(1, 2));
+        System.out.println(result);
+
+    }
+    /**
+     *@Desc:根据id进行逻辑删除标志位改变为1
+     *@param
+     *@return:void
+     * UPDATE user SET is_deleted=1 WHERE id=? AND is_deleted=0
+     */
+    @Test
+    public void testDeleteById2(){
+        int result = userMapper.deleteById(1379066255045206018L);
+        System.out.println(result);
+
+    }
+
+
 
 
 }

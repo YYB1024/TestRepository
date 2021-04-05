@@ -32,4 +32,8 @@ public class User {
     @Version
     @TableField(fill = FieldFill.INSERT)
     private Integer version;//版本号
+
+    //逻辑删除注解
+    @TableLogic
+    private Integer isDeleted;
 }
